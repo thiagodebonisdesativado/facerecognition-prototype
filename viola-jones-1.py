@@ -1,8 +1,9 @@
-'''
+"""
 THIS FILE WAS CREATED ESPECIALLY FOR DETECTION IN STATIC IMAGES.
 IMPORTANT: CODE DEVELOPED BY THIAGO DE BONIS CARVALHO SAAD SAUD
-'''
+"""
 import cv2
+
 
 # RETURN A PATH OF IMAGES
 def getStaticImage():
@@ -13,6 +14,7 @@ def getStaticImage():
                        'images\\static\\group_of_peoples(3).jpg'
                        ]
     return arrStaticImages
+
 
 # CONFIG CLASSIFIER INITIALIZATION
 classifier = cv2.CascadeClassifier('classifiers\\haar\\haarcascade_frontalface_default.xml')
@@ -53,4 +55,3 @@ for (x, y, l, a) in facesMatrix:
 # CONFIG CV2 IMAGE SHOW AND CLOSED (WAITKEY)
 cv2.imshow("FACES FOUND", imageOriginal)
 cv2.waitKey()
-
