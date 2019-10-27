@@ -6,7 +6,6 @@ IMPORTANT: READ README.MD FOR MORE CODE INFORMATION
 """
 import cv2
 
-
 # RETURN A PATH OF IMAGES
 def getStaticImage():
     arrStaticImages = ['images\\static\\cats_and_dogs.jpg',
@@ -18,14 +17,14 @@ def getStaticImage():
     return arrStaticImages
 
 
-# CONFIG CLASSIFIER INITIALIZATION
+# CV2 SETUP TO CLASSIFIER INITIALIZATION
 classifier = cv2.CascadeClassifier('classifiers\\haar\\haarcascade_frontalface_default.xml')
 
-# CONFIG CV2 IMAGE INITIALIZATION
+# CV2 SETUP TO IMAGE INITIALIZATION
 imageOriginal = cv2.imread(filename=getStaticImage()[1])
 imageConverted = cv2.cvtColor(src=imageOriginal, code=cv2.COLOR_BGR2GRAY)
 
-# CONFIG CLASSIFIER DETECT
+# CV2 SETUP TO CLASSIFIER DETECT
 faceDetected = classifier.detectMultiScale(image=imageConverted, scaleFactor=1.1, minNeighbors=1, minSize=(30, 30))
 facesMatrix = faceDetected
 facesAmount = len(faceDetected)
@@ -54,6 +53,6 @@ for (x, y, l, a) in facesMatrix:
         color=(0, 0, 255)
     )
 
-# CONFIG CV2 IMAGE SHOW AND CLOSED (WAITKEY)
+# CV2 SETUP TO IMAGE SHOW AND CLOSED (WAITKEY)
 cv2.imshow("FACES FOUND", imageOriginal)
 cv2.waitKey()
