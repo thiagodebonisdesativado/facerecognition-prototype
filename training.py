@@ -8,7 +8,7 @@ fisherface = cv2.face.FisherFaceRecognizer_create()
 
 print('STARTING TRAINING!')
 
-def getImagemId():
+def getImageId():
     paths = [os.path.join('images\\samples', i) for i in os.listdir('images\\samples')]
     faces = []
     ids = []
@@ -20,7 +20,7 @@ def getImagemId():
         faces.append(imageConverted)
     return numpy.array(ids), faces
 
-ids, faces = getImagemId()
+ids, faces = getImageId()
 
 eigenface.train(faces, ids)
 eigenface.write('classifiers\\classifierEigenface.yml')
