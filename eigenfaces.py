@@ -27,6 +27,7 @@ while True:
         for (x, y, w, h) in faceDetected:
             faceImage = cv2.resize(imageConverted[y:y + h, x:x + w], (width, height))
             faceId, accuracy = eigenface.predict(faceImage)
+
             faceName = getImageName(faceId)
 
             if faceName == 'THIAGO':

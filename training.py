@@ -26,6 +26,6 @@ eigenface.train(faces, ids)
 eigenface.write('classifiers\\classifierEigenface.yml')
 
 fisherface.train(faces, ids)
-fisherface.write('classifiers\\classifierFisher.yml')
+fisherface.write('classifiers\\classifierFisherface.yml')
 
 print('SUCCESSFUL TRAINING!')
