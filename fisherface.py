@@ -2,20 +2,11 @@ import cv2
 import os
 
 classifierFace = cv2.CascadeClassifier("classifiers\\haar\\haarcascade_frontalface_default.xml")
-fisherface = cv2.face.EigenFaceRecognizer_create(num_components=50)
-fisherface.read("classifiers\\classifierFisher.yml")
+fisherface = cv2.face.FisherFaceRecognizer_create(num_components=50, threshold=1)
+fisherface.read("classifiers\\classifierFisherface.yml")
 
 height, width = 220, 220
 webcam = cv2.VideoCapture(0, cv2.CAP_DSHOW)
-
-def getImageName(faceId):
-    paths = [os.path.join('images\\samples', i) for i in os.listdir('images\\samples')]
-    imageName = ''
-
-    for pathImage in paths:
-        imageName = os.path.split(pathImage)[1].split('.')[0]
-
-    return imageName.upper()
 
 while True:
     isConnected, image = webcam.read()
@@ -27,12 +18,18 @@ while True:
         for (x, y, w, h) in faceDetected:
             faceImage = cv2.resize(imageConverted[y:y + h, x:x + w], (width, height))
             faceId, accuracy = fisherface.predict(faceImage)
-            faceName = getImageName(faceId)
+            faceName = ''
 
-            if faceName == 'THIAGO':
+            print(faceId)
+            if faceId == 1:
                 color = (0, 255, 51)
+                faceName = 'THIAGO DE BONIS'
+            elif faceId == 2:
+                color = (0, 0, 255)
+                faceName = 'JANE RICHA'
             else:
                 color = (0, 0, 255)
+                faceName = 'UNKNOWN'
 
             cv2.rectangle(image, (x, y), (x + w, y + h), color, 2)
             cv2.putText(image, f'ID: {faceId}', (x, y + (h + 30)), cv2.FONT_HERSHEY_PLAIN, 1, color)
