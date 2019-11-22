@@ -20,7 +20,6 @@ while True:
             faceId, accuracy = fisherface.predict(faceImage)
             faceName = ''
 
-            print(faceId)
             if faceId == 1:
                 color = (0, 255, 51)
                 faceName = 'THIAGO DE BONIS'
